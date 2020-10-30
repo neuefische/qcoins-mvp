@@ -1,3 +1,7 @@
+# Qcoins
+
+Qcoins teaches children lessons about money-management, productive contribution, family bonding and early math-skills in a playful way.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
