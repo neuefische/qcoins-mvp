@@ -9,85 +9,44 @@ import {
   Legend,
 } from 'recharts'
 
-const data = [
-  {
-    description: 'clean room',
-    earn: 8,
-    spend: 1,
-    grow: 4,
-    share: 3,
-    timestamp: new Date(),
-  },
-  {
-    description: 'read book to sister',
-    earn: 6,
-    spend: 5,
-    grow: 1,
-    share: 0,
-    timestamp: new Date(),
-  },
-  {
-    description: 'sell art',
-    earn: 6,
-    spend: 1,
-    grow: 2,
-    share: 3,
-    timestamp: new Date(),
-  },
-  {
-    description: 'write book',
-    earn: 5,
-    spend: 3,
-    grow: 0,
-    share: 2,
-    timestamp: new Date(),
-  },
-  {
-    description: 'help cook',
-    earn: 10,
-    spend: 1,
-    grow: 4,
-    share: 5,
-    timestamp: new Date(),
-  },
-]
+function accummulateAccounts(data) {
+  const newData = []
 
-const newData = []
+  data.reduce(
+    (prev, cur) => {
+      const earn = prev.earn + cur.earn
+      const spend = prev.spend + cur.spend
+      const grow = prev.grow + cur.grow
+      const share = prev.share + cur.share
 
-data.reduce(
-  (prev, cur) => {
-    const earn = prev.earn + cur.earn
-    const spend = prev.spend + cur.spend
-    const grow = prev.grow + cur.grow
-    const share = prev.share + cur.share
+      newData.push({
+        description: cur.description,
+        earn: earn,
+        spend: spend,
+        grow: grow,
+        share: share,
+        timestamp: new Date(cur.timestamp).getDate(),
+      })
 
-    newData.push({
-      description: cur.description,
-      earn: earn,
-      spend: spend,
-      grow: grow,
-      share: share,
-      timestamp: cur.timestamp.getDate(),
-    })
-
-    return {
-      description: cur.description,
-      earn: earn,
-      spend: spend,
-      grow: grow,
-      share: share,
-      timestamp: cur.timestamp,
-    }
-  },
-  { description: '', earn: 0, spend: 0, grow: 0, share: 0 }
-)
-
-export default function Chart({ data = newData }) {
+      return {
+        description: cur.description,
+        earn: earn,
+        spend: spend,
+        grow: grow,
+        share: share,
+        timestamp: cur.timestamp,
+      }
+    },
+    { description: '', earn: 0, spend: 0, grow: 0, share: 0 }
+  )
+  return newData
+}
+export default function Chart({ data }) {
   return (
     <LineChart
       width={400}
       height={300}
-      data={data}
+      data={accummulateAccounts(data)}
       margin={{
         top: 10,
         right: 30,
