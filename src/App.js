@@ -1,12 +1,13 @@
 import EarnForm from './EarnForm'
-import useTransactions from './hooks/useTransactions'
+import useTransactions from './hooks/useEarnings'
 
 function App() {
   const [transactions, addTransaction] = useTransactions()
+  const [earnings, addEarning] = useEarnings()
 
   return (
     <div>
-      <EarnForm />
+      <EarnForm onSave={addEarning} />
     </div>
   )
 }
