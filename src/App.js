@@ -1,5 +1,11 @@
+import Chart from './components/Chart.js'
+
 function App() {
-    return <div>Hello qCoins</div>;
+  return (
+    <div>
+      <Chart />
+    </div>
+  )
 }
 
-export default App;
+export default App
