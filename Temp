@@ -1,0 +1,9 @@
+dataArray
+
+The source data, in which each element is an object.
+
+FORMAT:
+
+[{ name: 'a', value: 12 }]
+[{ name: 'a', value: [5, 12] }]
+
