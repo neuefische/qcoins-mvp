@@ -6,20 +6,12 @@ const STORAGE_KEY = 'qcoins-transactions'
 
 export default function useTransactions() {
   const [transactions, setTransactions] = useState(
-    loadFromLocal(STORAGE_KEY) ?? [{ saving: 0, timestamp: '0' }]
+    loadFromLocal(STORAGE_KEY) ?? []
   )
   useEffect(() => saveToLocal(STORAGE_KEY, transactions), [transactions])
-
   function addTransaction(transaction) {
-    const timestamp = new Date()
-    const date = `${timestamp.getFullYear()}-${timestamp.getMonth()}-${timestamp.getDate()}`
-    transaction = {
-      ...transaction,
-      timestamp: timestamp.toISOString(),
-      date: date,
-    }
+    transaction = { ...transaction, timestamp: new Date().toISOString() }
     setTransactions([...transactions, transaction])
   }
-
   return [transactions, addTransaction]
 }

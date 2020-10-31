@@ -1,3 +1,4 @@
+import React, { PureComponent } from 'react'
 import {
   LineChart,
   Line,
@@ -8,57 +9,117 @@ import {
   Legend,
 } from 'recharts'
 
-// const data = [
-//   {
-//     timestamp: 'timestamp',
-//     saving: 1,
-//   },
-//   {
-//     timestamp: 'timestamp',
-//     saving: 4,
-//   },
-//   {
-//     timestamp: 'timestamp',
-//     saving: 5,
-//   },
-//   {
-//     timestamp: 'timestamp',
-//     saving: 3,
-//   },
-//   {
-//     timestamp: 'timestamp',
-//     saving: 6,
-//   },
-//   {
-//     timestamp: 'timestamp',
-//     saving: 6,
-//   },
-//   {
-//     timestamp: 'timestamp',
-//     saving: 7,
-//   },
-// ]
+const data = [
+  {
+    description: 'clean room',
+    earn: 8,
+    spend: 1,
+    grow: 4,
+    share: 3,
+    timestamp: new Date(),
+  },
+  {
+    description: 'read book to sister',
+    earn: 6,
+    spend: 5,
+    grow: 1,
+    share: 0,
+    timestamp: new Date(),
+  },
+  {
+    description: 'sell art',
+    earn: 6,
+    spend: 1,
+    grow: 2,
+    share: 3,
+    timestamp: new Date(),
+  },
+  {
+    description: 'write book',
+    earn: 5,
+    spend: 3,
+    grow: 0,
+    share: 2,
+    timestamp: new Date(),
+  },
+  {
+    description: 'help cook',
+    earn: 10,
+    spend: 1,
+    grow: 4,
+    share: 5,
+    timestamp: new Date(),
+  },
+]
 
-export default function Chart({ data }) {
-  return (
-    <LineChart
-      width={400}
-      height={300}
-      data={data}
-      margin={{
-        top: 20,
-        right: 50,
-        left: -15,
-        bottom: 20,
-      }}
-      padding={20}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="date" textAnchor="start" tick={{ angle: 45 }} />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line type="monotone" dataKey="saving" stroke="#82ca9d" />
-    </LineChart>
-  )
+const newData = []
+
+data.reduce(
+  (prev, cur) => {
+    const earn = prev.earn + cur.earn
+    const spend = prev.spend + cur.spend
+    const grow = prev.grow + cur.grow
+    const share = prev.share + cur.share
+
+    newData.push({
+      description: cur.description,
+      earn: earn,
+      spend: spend,
+      grow: grow,
+      share: share,
+      timestamp: cur.timestamp.getDate(),
+    })
+
+    return {
+      description: cur.description,
+      earn: earn,
+      spend: spend,
+      grow: grow,
+      share: share,
+      timestamp: cur.timestamp,
+    }
+  },
+  { description: '', earn: 0, spend: 0, grow: 0, share: 0 }
+)
+
+export default class Example extends PureComponent {
+  render() {
+    return (
+      <LineChart
+        width={400}
+        height={300}
+        data={newData}
+        margin={{
+          top: 10,
+          right: 30,
+          left: -10,
+          bottom: 20,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="timestamp" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="spend"
+          stroke="#82ca9d"
+          activeDot={{ r: 8 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="grow"
+          stroke="#334CFF"
+          activeDot={{ r: 8 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="share"
+          stroke="#FF33F9"
+          activeDot={{ r: 8 }}
+        />
+      </LineChart>
+    )
+  }
 }
