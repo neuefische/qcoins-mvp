@@ -1,47 +1,43 @@
 import DistributionButton from './DistributionButton'
-
+import { Link } from 'react-router-dom'
 const transactionTypes = [
   {
-    type: 'Grow',
+    type: 'grow',
     color: 'blue',
   },
   {
-    type: 'Spend',
+    type: 'spend',
     color: 'orange',
   },
   {
-    type: 'Share',
+    type: 'share',
     color: 'purple',
   },
 ]
 
-export default function DistributeCoins({ earnedCoins }) {
-  console.log(earnedCoins)
+export default function DistributeCoins({ lastEarning, distribute }) {
+  const { unallocated, spend, share, grow } = lastEarning
+  const totalCoins = unallocated + spend + share + grow
   return (
     <>
       <section>
-        <h2>Coins earned: {earnedCoins.amount}</h2>
-        <span>You have 12 coins left to distribute.</span>
+        <h2>Coins earned: {totalCoins}</h2>
+        <span>You have {unallocated} coins left to distribute.</span>
       </section>
       <section>
         {transactionTypes.map(({ type, color }) => {
           return (
             <DistributionButton
               key={type}
-              onAdd={addOne}
-              onSbtract={subtractOne}
-            >
-              {type} earnedCoins={earnedCoins}
-            </DistributionButton>
+              type={type}
+              onAdd={() => distribute(type, 1)}
+              onSubtract={() => distribute(type, -1)}
+              value={lastEarning[type]}
+            />
           )
         })}
       </section>
+      <Link to={unallocated === 0 && '/home'}>Confirm</Link>
     </>
   )
-  function addOne() {
-    ;+1
-  }
-  function subtractOne() {
-    ;-1
-  }
 }

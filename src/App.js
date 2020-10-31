@@ -1,12 +1,11 @@
 import { Switch, Redirect, Route, useHistory } from 'react-router-dom'
 import EarnForm from './EarnForm'
-import useTransactions from './hooks/useTransactions'
 import useEarnings from './hooks/useEarnings'
 import Home from './Home'
 import DistributeCoins from './DistributeCoins'
 
 function App() {
-  const [earnings, addEarning] = useEarnings()
+  const { lastEarning, distribute, addEarning, earnings } = useEarnings()
   const history = useHistory()
 
   return (
@@ -21,10 +20,7 @@ function App() {
         />
       </Route>
       <Route path="/distribute-coins">
-        <DistributeCoins
-          earnedCoins={earnings[earnings.length - 1]}
-          distribute={}
-        />
+        <DistributeCoins lastEarning={lastEarning} distribute={distribute} />
       </Route>
       <Route path="/">
         <Redirect to="/home" />
