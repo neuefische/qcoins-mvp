@@ -1,13 +1,21 @@
-import Chart from './components/Chart.js'
+import Chart from './components/Chart'
 import useTransactions from './hooks/useTransactions'
 
 function App() {
   const [transactions, addTransaction] = useTransactions()
+  const lastTransactionValue =
+    transactions[transactions.length - 1]['saving'] ?? 0
+
+  const formDataEntry = 1
 
   return (
     <div>
-         <Chart />
-      <button onClick={() => addTransaction({ foo: 'bar' })}>
+      <Chart data={transactions} />
+      <button
+        onClick={() =>
+          addTransaction({ saving: lastTransactionValue + formDataEntry })
+        }
+      >
         Test localStorage
       </button>
     </div>

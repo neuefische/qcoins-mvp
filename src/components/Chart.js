@@ -10,54 +10,54 @@ import {
 
 const data = [
   {
-    name: '1500',
+    timestamp: 'timestamp',
     saving: 1,
   },
   {
-    name: 'timestamp',
+    timestamp: 'timestamp',
     saving: 4,
   },
   {
-    name: 'timestamp',
+    timestamp: 'timestamp',
     saving: 5,
   },
   {
-    name: 'timestamp',
+    timestamp: 'timestamp',
     saving: 3,
   },
   {
-    name: 'timestamp',
+    timestamp: 'timestamp',
     saving: 6,
   },
   {
-    name: 'timestamp',
+    timestamp: 'timestamp',
     saving: 6,
   },
   {
-    name: 'timestamp',
+    timestamp: 'timestamp',
     saving: 7,
   },
 ]
 
-export default function Chart() {
+export default function Chart({ data }) {
   return (
     <LineChart
-      width={500}
+      width={400}
       height={300}
       data={data}
       margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
+        top: 20,
+        right: 50,
+        left: -15,
+        bottom: 20,
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey="date" />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Line type="monotone" dataKey="coins" stroke="#82ca9d" />
+      <Line type="monotone" dataKey="saving" stroke="#82ca9d" />
     </LineChart>
   )
 }
