@@ -1,25 +1,37 @@
-import Chart from './components/Chart'
-import useTransactions from './hooks/useTransactions'
+import { Switch, Redirect, Route, useHistory } from 'react-router-dom'
+import EarnForm from './EarnForm'
+import useEarnings from './hooks/useEarnings'
+import Home from './Home'
+import DistributeCoins from './DistributeCoins'
 
 function App() {
-  const [transactions, addTransaction] = useTransactions()
-  const lastTransactionValue =
-    transactions[transactions.length - 1]['saving'] ?? 0
-
-  const formDataEntry = 1
+  const { lastEarning, distribute, addEarning, earnings } = useEarnings()
+  const history = useHistory()
 
   return (
-    <div>
-      <Chart />
-      <button
-        onClick={() =>
-          addTransaction({ saving: lastTransactionValue + formDataEntry })
-        }
-      >
-        Test localStorage
-      </button>
-    </div>
+    <Switch>
+      <Route path="/home">
+        <Home />
+      </Route>
+      <Route path="/earn-coins">
+        <EarnForm
+          onSave={handleSaveEarnings}
+          onCancel={() => history.push('/home')}
+        />
+      </Route>
+      <Route path="/distribute-coins">
+        <DistributeCoins lastEarning={lastEarning} distribute={distribute} />
+      </Route>
+      <Route path="/">
+        <Redirect to="/home" />
+      </Route>
+    </Switch>
   )
+
+  function handleSaveEarnings(earning) {
+    addEarning(earning)
+    history.push('/distribute-coins')
+  }
 }
 
 export default App
