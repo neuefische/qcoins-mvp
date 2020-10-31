@@ -1,3 +1,4 @@
+import EarnForm from './EarnForm'
 import useTransactions from './hooks/useTransactions'
 
 function App() {
@@ -5,9 +6,7 @@ function App() {
 
   return (
     <div>
-      <button onClick={() => addTransaction({ foo: 'bar' })}>
-        Test localStorage
-      </button>
+      <EarnForm />
     </div>
   )
 }
