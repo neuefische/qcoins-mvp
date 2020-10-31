@@ -1,5 +1,5 @@
 function App() {
-    return <div>Hello qCoins</div>;
+  return <div>Hello qCoins</div>
 }
 
-export default App;
+export default App
