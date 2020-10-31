@@ -3,6 +3,7 @@ import EarnForm from './EarnForm'
 import useTransactions from './hooks/useTransactions'
 import useEarnings from './hooks/useEarnings'
 import Home from './Home'
+import { DistributeCoins } from './DistributeCoins'
 
 function App() {
   const [transactions, addTransaction] = useTransactions()
@@ -17,6 +18,9 @@ function App() {
       </Route>
       <Route path="/earn-coins">
         <EarnForm onSave={addEarning} onCancel={() => history.push('/home')} />
+      </Route>
+      <Route path="/distribute-coins">
+        <DistributeCoins earnedCoins={earnings[earnings.length - 1]} />
       </Route>
       <Route path="/">
         <Redirect to="/home" />
