@@ -1,5 +1,6 @@
 import EarnForm from './EarnForm'
-import useTransactions from './hooks/useEarnings'
+import useTransactions from './hooks/useTransactions'
+import useEarnings from './hooks/useEarnings'
 
 function App() {
   const [transactions, addTransaction] = useTransactions()
