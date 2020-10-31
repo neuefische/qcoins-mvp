@@ -1,3 +1,5 @@
+import DistributionButton from './DistributionButton'
+
 const transactionTypes = [
   {
     type: 'Grow',
@@ -14,6 +16,7 @@ const transactionTypes = [
 ]
 
 export default function DistributeCoins({ earnedCoins }) {
+  console.log(earnedCoins)
   return (
     <>
       <section>
@@ -22,9 +25,23 @@ export default function DistributeCoins({ earnedCoins }) {
       </section>
       <section>
         {transactionTypes.map(({ type, color }) => {
-          return <button key={type}>{type}</button>
+          return (
+            <DistributionButton
+              key={type}
+              onAdd={addOne}
+              onSbtract={subtractOne}
+            >
+              {type} earnedCoins={earnedCoins}
+            </DistributionButton>
+          )
         })}
       </section>
     </>
   )
+  function addOne() {
+    ;+1
+  }
+  function subtractOne() {
+    ;-1
+  }
 }
