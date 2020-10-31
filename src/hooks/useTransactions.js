@@ -12,7 +12,7 @@ export default function useTransactions() {
 
   function addTransaction(transaction) {
     const timestamp = new Date()
-    const date = `${timestamp.getFullYear()} - ${timestamp.getMonth()} - ${timestamp.getDate()}`
+    const date = `${timestamp.getFullYear()}-${timestamp.getMonth()}-${timestamp.getDate()}`
     transaction = {
       ...transaction,
       timestamp: timestamp.toISOString(),

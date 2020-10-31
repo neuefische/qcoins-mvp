@@ -8,36 +8,36 @@ import {
   Legend,
 } from 'recharts'
 
-const data = [
-  {
-    timestamp: 'timestamp',
-    saving: 1,
-  },
-  {
-    timestamp: 'timestamp',
-    saving: 4,
-  },
-  {
-    timestamp: 'timestamp',
-    saving: 5,
-  },
-  {
-    timestamp: 'timestamp',
-    saving: 3,
-  },
-  {
-    timestamp: 'timestamp',
-    saving: 6,
-  },
-  {
-    timestamp: 'timestamp',
-    saving: 6,
-  },
-  {
-    timestamp: 'timestamp',
-    saving: 7,
-  },
-]
+// const data = [
+//   {
+//     timestamp: 'timestamp',
+//     saving: 1,
+//   },
+//   {
+//     timestamp: 'timestamp',
+//     saving: 4,
+//   },
+//   {
+//     timestamp: 'timestamp',
+//     saving: 5,
+//   },
+//   {
+//     timestamp: 'timestamp',
+//     saving: 3,
+//   },
+//   {
+//     timestamp: 'timestamp',
+//     saving: 6,
+//   },
+//   {
+//     timestamp: 'timestamp',
+//     saving: 6,
+//   },
+//   {
+//     timestamp: 'timestamp',
+//     saving: 7,
+//   },
+// ]
 
 export default function Chart({ data }) {
   return (
@@ -51,9 +51,10 @@ export default function Chart({ data }) {
         left: -15,
         bottom: 20,
       }}
+      padding={20}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="date" />
+      <XAxis dataKey="date" textAnchor="start" tick={{ angle: 45 }} />
       <YAxis />
       <Tooltip />
       <Legend />
