@@ -6,12 +6,33 @@ const STORAGE_KEY = 'qcoins-earnings'
 
 export default function useEarnings() {
   const [earnings, setEarnings] = useState(loadFromLocal(STORAGE_KEY) ?? [])
+  const lastEarning = earnings[earnings.length - 1]
   useEffect(() => saveToLocal(STORAGE_KEY, earnings), [earnings])
 
   function addEarning(earning) {
-    earning = { ...earning, timestamp: new Date().toISOString() }
+    earning = {
+      ...earning,
+      spend: 0,
+      grow: 0,
+      share: 0,
+      timestamp: new Date().toISOString(),
+    }
     setEarnings([...earnings, earning])
   }
+  function distribute(type, value) {
+    if (
+      (value === 1 && lastEarning.unallocated === 0) ||
+      (value === -1 && lastEarning[type] === 0)
+    ) {
+      return
+    }
+    const newEarning = {
+      ...lastEarning,
+      unallocated: lastEarning.unallocated - value,
+      [type]: lastEarning[type] + value,
+    }
+    setEarnings([...earnings.slice(0, earnings.length - 1), newEarning])
+  }
 
-  return [earnings, addEarning]
+  return { lastEarning, distribute, addEarning, earnings }
 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components/macro'
 
 const initialState = {
-  amount: 0,
+  unallocated: 0,
   description: '',
 }
 
@@ -13,10 +13,10 @@ export default function EarnForm({ onSave, onCancel }) {
       <label>
         Coins earned
         <EarnedInput
-          name="amount"
+          name="unallocated"
           type="text"
           inputMode="numeric"
-          value={earning.amount}
+          value={earning.unallocated}
           onChange={handleChange}
         />
       </label>
@@ -45,9 +45,9 @@ export default function EarnForm({ onSave, onCancel }) {
 
   function handleChange(event) {
     const { name, value } = event.target
-    if (name === 'amount') {
+    if (name === 'unallocated') {
       const number = Number(value)
-      Number.isNaN(number) || setEarning({ ...earning, amount: number })
+      Number.isNaN(number) || setEarning({ ...earning, unallocated: number })
     } else {
       setEarning({
         ...earning,
