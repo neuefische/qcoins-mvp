@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <Chart data={transactions} />
+      <Chart />
       <button
         onClick={() =>
           addTransaction({ saving: lastTransactionValue + formDataEntry })

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import {
   LineChart,
   Line,
@@ -82,44 +82,42 @@ data.reduce(
   { description: '', earn: 0, spend: 0, grow: 0, share: 0 }
 )
 
-export default class Example extends PureComponent {
-  render() {
-    return (
-      <LineChart
-        width={400}
-        height={300}
-        data={newData}
-        margin={{
-          top: 10,
-          right: 30,
-          left: -10,
-          bottom: 20,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="timestamp" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="spend"
-          stroke="#82ca9d"
-          activeDot={{ r: 8 }}
-        />
-        <Line
-          type="monotone"
-          dataKey="grow"
-          stroke="#334CFF"
-          activeDot={{ r: 8 }}
-        />
-        <Line
-          type="monotone"
-          dataKey="share"
-          stroke="#FF33F9"
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
-    )
-  }
+export default function Chart({ data = newData }) {
+  return (
+    <LineChart
+      width={400}
+      height={300}
+      data={data}
+      margin={{
+        top: 10,
+        right: 30,
+        left: -10,
+        bottom: 20,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="timestamp" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Line
+        type="monotone"
+        dataKey="spend"
+        stroke="#82ca9d"
+        activeDot={{ r: 8 }}
+      />
+      <Line
+        type="monotone"
+        dataKey="grow"
+        stroke="#334CFF"
+        activeDot={{ r: 8 }}
+      />
+      <Line
+        type="monotone"
+        dataKey="share"
+        stroke="#FF33F9"
+        activeDot={{ r: 8 }}
+      />
+    </LineChart>
+  )
 }
