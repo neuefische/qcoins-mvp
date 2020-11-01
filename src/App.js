@@ -4,6 +4,7 @@ import useEarnings from './hooks/useEarnings'
 import Home from './Home'
 import DistributeCoins from './DistributeCoins'
 import Chart from './components/Chart'
+import CoinPile from './CoinPile'
 
 function App() {
   const { lastEarning, distribute, addEarning, earnings } = useEarnings()
