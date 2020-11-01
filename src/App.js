@@ -4,6 +4,7 @@ import useEarnings from './hooks/useEarnings'
 import Home from './Home'
 import DistributeCoins from './DistributeCoins'
 import Chart from './components/Chart'
+import Header from './Header'
 
 function App() {
   const { lastEarning, distribute, addEarning, earnings } = useEarnings()
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <>
+      <Header earnings={earnings} />
       <Chart data={earnings} />
       <Switch>
         <Route path="/home">
