@@ -9,44 +9,23 @@ import {
   Legend,
 } from 'recharts'
 
-function accummulateAccounts(data) {
-  const newData = []
-
-  data.reduce(
-    (prev, cur) => {
-      const earn = prev.earn + cur.earn
-      const spend = prev.spend + cur.spend
-      const grow = prev.grow + cur.grow
-      const share = prev.share + cur.share
-
-      newData.push({
-        description: cur.description,
-        earn: earn,
-        spend: spend,
-        grow: grow,
-        share: share,
-        timestamp: new Date(cur.timestamp).getDate(),
-      })
-
-      return {
-        description: cur.description,
-        earn: earn,
-        spend: spend,
-        grow: grow,
-        share: share,
-        timestamp: cur.timestamp,
-      }
-    },
-    { description: '', earn: 0, spend: 0, grow: 0, share: 0 }
-  )
-  return newData
+function accumulateAccounts(sums, { spend, grow, share }) {
+  if (sums.length === 0) {
+    return [{ spend, grow, share }]
+  }
+  const nextSum = { ...sums[sums.length - 1] }
+  nextSum.spend += spend
+  nextSum.grow += grow
+  nextSum.share += share
+  return [...sums, nextSum]
 }
+
 export default function Chart({ data }) {
   return (
     <LineChart
       width={400}
       height={300}
-      data={accummulateAccounts(data)}
+      data={data.reduce(accumulateAccounts, [])}
       margin={{
         top: 10,
         right: 30,
