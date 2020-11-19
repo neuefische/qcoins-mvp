@@ -41,7 +41,7 @@ export default function EarnForm({ onSave, onCancel }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSave(earning)
+    earning.unallocated > 0 && earning.description.length > 0 && onSave(earning)
   }
 
   function handleChange(event) {
