@@ -5,6 +5,7 @@ import Home from './pages/Home/Home'
 import DistributeCoins from './pages/DistributeCoins/DistributeCoins'
 import Chart from './components/Chart/Chart'
 import Header from './components/Header/Header'
+import UseCoins from './pages/UseCoins/UseCoins'
 
 function App() {
   const { lastEarning, distribute, addEarning, earnings } = useEarnings()
@@ -17,6 +18,9 @@ function App() {
       <Switch>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/use-coins">
+          <UseCoins />
         </Route>
         <Route path="/earn-coins">
           <EarnForm
