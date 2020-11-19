@@ -1,4 +1,4 @@
-import DistributionButton from './DistributionButton'
+import DistributionButton from '../../components/DistributionButton/DistributionButton'
 import { Link } from 'react-router-dom'
 const transactionTypes = [
   {
