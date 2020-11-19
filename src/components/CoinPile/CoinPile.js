@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import coin from './assets/qcoin.png'
+import coin from '../../assets/qcoin.png'
 
 export default function CoinPile({ coins }) {
   return (
