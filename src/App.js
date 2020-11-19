@@ -1,10 +1,11 @@
 import { Switch, Redirect, Route, useHistory } from 'react-router-dom'
-import EarnForm from './EarnForm'
+import EarnForm from './pages/EarnForm/EarnForm'
 import useEarnings from './hooks/useEarnings'
-import Home from './Home'
-import DistributeCoins from './DistributeCoins'
-import Chart from './components/Chart'
-import CoinPile from './CoinPile'
+import Home from './pages/Home/Home'
+import DistributeCoins from './pages/DistributeCoins/DistributeCoins'
+import Chart from './components/Chart/Chart'
+import Header from './components/Header/Header'
+import UseCoins from './pages/UseCoins/UseCoins'
 
 function App() {
   const { lastEarning, distribute, addEarning, earnings } = useEarnings()
@@ -12,10 +13,14 @@ function App() {
 
   return (
     <>
+      <Header earnings={earnings} />
       <Chart data={earnings} />
       <Switch>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/use-coins">
+          <UseCoins />
         </Route>
         <Route path="/earn-coins">
           <EarnForm
