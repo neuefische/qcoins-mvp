@@ -42,5 +42,6 @@ export default createGlobalStyle`
     --main-yellow: 255, 226, 148;
     --main-green: 164, 221, 196;
     --main-blue: 63, 151, 239;
+    --color-babyblue: #CDE4FB;
   }
 `

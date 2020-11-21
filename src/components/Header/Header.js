@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import DisplayBalance from '../DisplayBalance/DisplayBalance'
 
 export default function Header({ earnings }) {
   const { grow, share, spend } = earnings.reduce(
@@ -12,9 +13,9 @@ export default function Header({ earnings }) {
   )
   return (
     <HeaderStyled>
-      <span>Grow: {grow}</span>
-      <span>Share: {share}</span>
-      <span>Spend: {spend}</span>
+      <DisplayBalance type={'Grow'} value={grow} />
+      <DisplayBalance type={'Share'} value={share} />
+      <DisplayBalance type={'Spend'} value={spend} />
     </HeaderStyled>
   )
 }
