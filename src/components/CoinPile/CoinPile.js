@@ -4,8 +4,8 @@ import coin from '../../assets/qcoin.png'
 export default function CoinPile({ coins }) {
   return (
     <StyledCoinPile>
-      {[...new Array(coins)].map(() => (
-        <StyledCoin src={coin} />
+      {[...new Array(coins)].map((_,index) => (
+        <StyledCoin key={index} src={coin} />
       ))}
     </StyledCoinPile>
   )
