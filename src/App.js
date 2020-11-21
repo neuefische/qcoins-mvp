@@ -17,7 +17,7 @@ function App() {
       <Chart data={earnings} />
       <Switch>
         <Route path="/home">
-          <Home />
+          <Home data={earnings} />
         </Route>
         <Route path="/use-coins">
           <UseCoins />

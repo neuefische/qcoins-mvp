@@ -40,8 +40,11 @@ export default createGlobalStyle`
   :root {
     --navigationButton-font-darkgrey: #414141;
     --main-yellow: 255, 226, 148;
+    --main-darkerYellow: 255,198,49;
     --main-green: 164, 221, 196;
+    --main-darkerGreen: 49,199,132;
     --main-blue: 63, 151, 239;
+    --main-darkerBlue: 36,88,141;
     --color-babyblue: #CDE4FB;
   }
 `
