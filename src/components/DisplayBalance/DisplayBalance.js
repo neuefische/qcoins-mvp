@@ -13,7 +13,7 @@ export default function DisplayBalance({ type, value }) {
   return (
     <Wrapper>
       <CircleValueWrapper>
-        <Circle type={type} color={getColor(type)}>
+        <Circle type={type} data-testid={`svg${type}`} color={getColor(type)}>
           {getSymbol(type)}
         </Circle>
         <Value>{value}</Value>
