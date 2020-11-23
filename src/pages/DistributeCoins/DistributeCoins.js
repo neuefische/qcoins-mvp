@@ -1,5 +1,8 @@
 import DistributionButton from '../../components/DistributionButton/DistributionButton'
 import { Link } from 'react-router-dom'
+import CoinPile from '../../components/CoinPile/CoinPile'
+import styled from 'styled-components/macro'
+
 const transactionTypes = [
   {
     type: 'grow',
@@ -20,24 +23,36 @@ export default function DistributeCoins({ lastEarning, distribute }) {
   const totalCoins = unallocated + spend + share + grow
   return (
     <>
-      <section>
+      <CenterColumn>
+        <CoinPile coins={totalCoins} />
         <h2>Coins earned: {totalCoins}</h2>
+        <CoinPile coins={unallocated} />
         <span>You have {unallocated} coins left to distribute.</span>
-      </section>
-      <section>
+      </CenterColumn>
+      <CenterColumn>
         {transactionTypes.map(({ type, color }) => {
           return (
-            <DistributionButton
-              key={type}
-              type={type}
-              onAdd={() => distribute(type, 1)}
-              onSubtract={() => distribute(type, -1)}
-              value={lastEarning[type]}
-            />
+            <>
+              <CoinPile coins={lastEarning[type]} />
+              <DistributionButton
+                key={type}
+                type={type}
+                onAdd={() => distribute(type, 1)}
+                onSubtract={() => distribute(type, -1)}
+                value={lastEarning[type]}
+              />
+            </>
           )
         })}
-      </section>
+      </CenterColumn>
       <Link to={unallocated === 0 && '/home'}>Confirm</Link>
     </>
   )
 }
+
+const CenterColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
