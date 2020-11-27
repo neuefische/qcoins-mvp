@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom'
 import DistributionButton from '../../components/DistributionButton/DistributionButton'
+import { Link } from 'react-router-dom'
 
 const transactionTypes = [
   {
@@ -31,7 +32,7 @@ export default function UseCoins({ spendCoins, lastEarning }) {
           />
         )
       })}
-      <button onClick={() => history.push('/home')}>Return</button>
+      <Link onClick={() => history.push('/home')}>Return</Link>
     </div>
   )
 }

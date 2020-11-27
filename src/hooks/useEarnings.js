@@ -17,7 +17,6 @@ export default function useEarnings() {
       share: 0,
       timestamp: new Date().toISOString(),
     }
-    console.log(earning)
     setEarnings([...earnings, earning])
   }
 
