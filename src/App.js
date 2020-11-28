@@ -8,7 +8,13 @@ import Header from './components/Header/Header'
 import UseCoins from './pages/UseCoins/UseCoins'
 
 function App() {
-  const { lastEarning, distribute, addEarning, earnings } = useEarnings()
+  const {
+    lastEarning,
+    distribute,
+    addEarning,
+    earnings,
+    spendCoins,
+  } = useEarnings()
   const history = useHistory()
 
   return (
@@ -20,7 +26,7 @@ function App() {
           <Home />
         </Route>
         <Route path="/use-coins">
-          <UseCoins />
+          <UseCoins spendCoins={spendCoins} lastEarning={lastEarning} />
         </Route>
         <Route path="/earn-coins">
           <EarnForm

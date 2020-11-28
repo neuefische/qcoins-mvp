@@ -19,6 +19,7 @@ export default function useEarnings() {
     }
     setEarnings([...earnings, earning])
   }
+
   function distribute(type, value) {
     if (
       (value === 1 && lastEarning.unallocated === 0) ||
@@ -34,5 +35,13 @@ export default function useEarnings() {
     setEarnings([...earnings.slice(0, earnings.length - 1), newEarning])
   }
 
-  return { lastEarning, distribute, addEarning, earnings }
+  function spendCoins(type, value) {
+    const lastSpending = {
+      ...lastEarning,
+      [type]: lastEarning[type] + value,
+    }
+    setEarnings([...earnings.slice(0, earnings.length - 1), lastSpending])
+  }
+
+  return { lastEarning, distribute, addEarning, earnings, spendCoins }
 }
